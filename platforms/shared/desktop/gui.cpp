@@ -814,6 +814,10 @@ static void set_style(void)
 {
     ImGuiStyle& style = ImGui::GetStyle();
 
+    // Start from the defaults: ScaleAllSizes() below multiplies the sizes
+    // in place, so a style that was already scaled would be scaled again.
+    style = ImGuiStyle();
+
     style.Alpha = 1.0f;
     style.DisabledAlpha = 0.6000000238418579f;
     style.WindowPadding = ImVec2(8.0f, 8.0f);
@@ -849,6 +853,14 @@ static void set_style(void)
         set_style_light(style);
     else
         set_style_dark(style);
+
+    // UI scale (UIScale in the [Emulator] section of the config file), e.g.
+    // 2.0 on a HiDPI display whose compositor doesn't scale the window:
+    // spacing, padding and sizes, and the fonts, which are rasterized at
+    // the scaled size (ImGuiBackendFlags_RendererHasTextures), so they stay
+    // sharp.
+    style.ScaleAllSizes(config_emulator.ui_scale);
+    style.FontScaleMain = config_emulator.ui_scale;
 }
 
 static void set_style_light(ImGuiStyle& style)

@@ -52,6 +52,7 @@ enum config_VideoSync
 
 struct config_Emulator
 {
+    float ui_scale;
     bool maximized;
     bool fullscreen;
     int fullscreen_mode;

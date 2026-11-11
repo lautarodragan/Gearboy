@@ -119,6 +119,7 @@ static inline void process(config_Operation operation)
     //**************************************
 
     // Window and interface
+    CONFIG_FLOAT_RANGE("Emulator", "UIScale", config_emulator.ui_scale, 1.0f, 0.5f, 4.0f);
     CONFIG_BOOL("Emulator", "Maximized", config_emulator.maximized, false);
     CONFIG_BOOL("Emulator", "FullScreen", config_emulator.fullscreen, false);
     CONFIG_INT("Emulator", "FullScreenMode", config_emulator.fullscreen_mode, 0);
